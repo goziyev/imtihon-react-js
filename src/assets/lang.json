@@ -1,0 +1,26 @@
+{
+  "en": {
+    "translation": {
+      "home": "Home",
+      "about": "About",
+      "products": "Products",
+      "card": "Card"
+    }
+  },
+  "ru": {
+    "translation": {
+      "home": "Дом",
+      "about": "O нас",
+      "products": "Продукты",
+      "card": "Kорзина"
+    }
+  },
+  "uz": {
+    "translation": {
+      "home": "Asosiy",
+      "about": "Biz haqimizda",
+      "products": "Mahsulotlar",
+      "card": "Savat"
+    }
+  }
+}
