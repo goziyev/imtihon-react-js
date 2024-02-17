@@ -10,10 +10,6 @@ const ProductList = () => {
   const [replace, setReplace] = useState(true);
   const [cardPrice, setCardPrice] = useState(1000);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   const searchRef = useRef();
   const categoryRef = useRef();
   const companyRef = useRef();
@@ -22,6 +18,9 @@ const ProductList = () => {
 
   useEffect(() => {}, [data]);
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   const fetchProducts = () => {
     setLoading(true);
     const apiUrl = `https://strapi-store-server.onrender.com/api/products`;
@@ -30,11 +29,12 @@ const ProductList = () => {
       .then((el) => {
         setLoading(false);
         setData(el.data);
+        setLoading(false);
       })
       .catch((error) => console.error("Error fetching products:", error));
   };
 
-  function DeleteInputValue() {
+  function FormReset() {
     searchRef.current.value = "";
     categoryRef.current.value = "all";
     companyRef.current.value = "all";
@@ -48,11 +48,6 @@ const ProductList = () => {
       const response = await fetch(URL);
       const element = await response.json();
       setData(element.data);
-      console.log(element);
-      console.log(searchRef.current.value);
-      console.log(companyRef.current.value);
-      console.log(categoryRef.current.value);
-      console.log(priceRef.current.value);
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +66,7 @@ const ProductList = () => {
             <label htmlFor="productName">Seach Category</label>
             <select ref={categoryRef}>
               <option value="all">All</option>
-              <option value="Table">Table</option>
+              <option value="Tables">Table</option>
               <option value="Chairs">Chairs</option>
               <option value="Kids">Kids</option>
               <option value="Sofas">Sofas</option>
@@ -141,16 +136,19 @@ const ProductList = () => {
               />
             </div>
             <div className={style.buttons}>
-              <button className={style.search} onClick={FilterSearch}>
+              <button
+                className={style.search}
+                onClick={() => {
+                  FilterSearch();
+                  setLoading(true);
+                }}
+              >
                 Search
               </button>
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  setSearch("");
-                  setCategory("all");
-                  setCompany("all");
-                  setSortBy("a-z");
+                  FormReset();
                   fetchProducts();
                 }}
               >
@@ -161,7 +159,7 @@ const ProductList = () => {
         </form>
         <div className={style.replaceWrapper}>
           <p>{data.length} Products</p>
-          <div className={style.replaceButtons}>
+          <div>
             <button
               onClick={() => {
                 setReplace(true);
