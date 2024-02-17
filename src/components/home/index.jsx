@@ -6,12 +6,12 @@ import Loader from "../loader";
 function Home() {
   const Navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("https://strapi-store-server.onrender.com/api/products?featured=true")
       .then((res) => res.json())
       .then((el) => {
-        setLoading(false)
+        setLoading(false);
         setData(el.data);
       });
   }, []);
@@ -27,7 +27,9 @@ function Home() {
     objectFit: "cover",
   };
   return (
-    <> {loading && <Loader loading={loading}/>}
+    <>
+      {" "}
+      {loading && <Loader loading={loading} />}
       <div
         className="container mx-auto flex flex-col md:flex-row justify-between items-center mt-5 px-4"
         style={styles}
@@ -41,7 +43,7 @@ function Home() {
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
-          <button className="btn btn-info text-left">OUR PRODUCTS </button>
+          <button className="btn btn-primary">OUR PRODUCTS </button>
         </div>
         <div className="md:w-1/2">
           <div className="carousel carousel-center max-w-full md:max-w-4xl p-4 space-x-4 bg-neutral rounded-box mt-16">
