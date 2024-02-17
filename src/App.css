@@ -3,3 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  font-family: sans-serif;
+}
+
+/* Dark mode uchun stil */
+.dark-mode .sun-icon {
+  display: none;
+}
+
+.dark-mode .moon-icon {
+  display: block;
+}
+
+.light-mode .sun-icon {
+  display: block;
+}
+
+.light-mode .moon-icon {
+  display: none;
+}

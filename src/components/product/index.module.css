@@ -1,0 +1,114 @@
+.container {
+  max-width: 1152px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 32px;
+  margin-top: 100px;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+}
+.links p {
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 15px;
+}
+.links p:hover {
+  border-color: black;
+}
+
+.cardWrapper {
+  margin-top: 35px;
+  display: flex;
+  gap: 50px;
+  margin-bottom: 70px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cardImg img {
+  object-fit: cover;
+  width: 512px;
+  height: 384px;
+  border-radius: 6px;
+}
+.cardTexts {
+  width: 520px;
+}
+.cardTitle {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 32px;
+  color: #394e6a;
+  margin-bottom: 10px;
+}
+
+.cardcomp {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 20px;
+  color: lightgray;
+  margin-bottom: 15px;
+}
+.cardPrice {
+  font-size: 21px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: #394e6a;
+  margin-bottom: 15px;
+}
+
+.cardDesc {
+  line-height: 35px;
+  color: #394e6a;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.cardColor {
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #394e6a;
+}
+
+.colors {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.productForm {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-direction: column;
+}
+
+.productForm label {
+  font-size: 14px;
+  color: #394e6a;
+  font-weight: 600;
+}
+.productForm select {
+  width: 300px;
+  border: 1px solid rgb(108, 108, 114);
+  padding: 15px;
+  border-radius: 15px;
+  outline-color: blue;
+  appearance: none;
+}
+
+.productForm button {
+  margin-top: 10px;
+  background-color: #463aa1;
+  color: rgb(223, 214, 214);
+  cursor: pointer;
+  width: 100px;
+  font-size: 13px;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 15px 0px;
+}

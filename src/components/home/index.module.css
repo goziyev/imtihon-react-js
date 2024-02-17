@@ -1,0 +1,73 @@
+.container {
+  max-width: 1152px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 32px;
+}
+.text {
+  width: 100%;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 20px;
+  margin-top: 40px;
+  font-size: 25px;
+  font-weight: 700;
+  color: rgb(113, 107, 107);
+}
+
+.cardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+.card {
+  width: 352px;
+  height: 332px;
+  border-radius: 16px;
+  text-transform: capitalize;
+  cursor: pointer;
+  padding: 16px;
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.1),
+    0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0);
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  }
+}
+.cardImg {
+  height: 192px;
+  overflow: hidden;
+}
+
+.cardImg img {
+  height: 192px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+
+  border-radius: 12px;
+}
+.cardText {
+  padding: 32px;
+}
+.cardText h4 {
+  text-align: center;
+  color: rgb(57, 78, 106);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.cardText h5 {
+  margin-top: 8px;
+  color: rgb(70, 58, 161);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
