@@ -41,13 +41,13 @@ const ProductList = () => {
     priceRef.current.value = "100000";
   }
 
-  const FilterSearch = async (e) => {
-    e.preventDefault();
+  const FilterSearch = async () => {
     try {
       const URL = `https://strapi-store-server.onrender.com/api/products?search=${searchRef.current.value}&category=${categoryRef.current.value}&company=${companyRef.current.value}&order=a-z&price=${priceRef.current.value}`;
       const response = await fetch(URL);
       const element = await response.json();
       setData(element.data);
+      setLoading(false)
     } catch (err) {
       console.log(err);
     }
@@ -138,15 +138,17 @@ const ProductList = () => {
             <div className={style.buttons}>
               <button
                 className={style.search}
-                onClick={() => {
+                onClick={(e) => {
+                  setLoading(true)
+                  e.preventDefault();
                   FilterSearch();
-                  setLoading(true);
                 }}
               >
                 Search
               </button>
               <button
                 onClick={(e) => {
+                  setLoading(true)
                   e.preventDefault();
                   FormReset();
                   fetchProducts();
@@ -159,7 +161,7 @@ const ProductList = () => {
         </form>
         <div className={style.replaceWrapper}>
           <p>{data.length} Products</p>
-          <div>
+          <div className={style.replaceButtons}>
             <button
               onClick={() => {
                 setReplace(true);
