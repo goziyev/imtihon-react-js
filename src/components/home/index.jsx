@@ -44,7 +44,7 @@ function Home() {
           <h3 className="mt-16 text-5xl text-gray-600 font-bold w-5/6 mb-5">
             {t("homeTitle")}
           </h3>
-          <p className="text-xl w-4/6 mb-8 text-gray-600">
+          <p className="text-xl w-4/6 mb-8 text-gray-600  dark:text-white">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
