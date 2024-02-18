@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./index.module.css";
 import Loader from "../loader";
+import { useTranslation } from "react-i18next";
 
 const ProductList = () => {
+  const { t, i18n } = useTranslation();
   const Navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -20,6 +22,8 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProducts();
+    let lang = localStorage.getItem("lang");
+    i18n.changeLanguage(lang);
   }, []);
   const fetchProducts = () => {
     setLoading(true);
@@ -47,7 +51,7 @@ const ProductList = () => {
       const response = await fetch(URL);
       const element = await response.json();
       setData(element.data);
-      setLoading(false)
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -59,11 +63,11 @@ const ProductList = () => {
       <div className={style.container}>
         <form className={style.formWrapper}>
           <div className={style.div}>
-            <label htmlFor="productName">Seach Product</label>
+            <label htmlFor="productName">{t("productSearch")}</label>
             <input type="text" ref={searchRef} />
           </div>
           <div className={style.div}>
-            <label htmlFor="productName">Seach Category</label>
+            <label htmlFor="productName">{t("productCategory")}</label>
             <select ref={categoryRef}>
               <option value="all">All</option>
               <option value="Tables">Table</option>
@@ -74,7 +78,7 @@ const ProductList = () => {
             </select>
           </div>
           <div className={style.div}>
-            <label htmlFor="productName">Select Company</label>
+            <label htmlFor="productName">{t("productCompany")}</label>
             <select ref={companyRef}>
               <option value="all">All</option>
               <option value="Modenza">Modenza</option>
@@ -85,7 +89,7 @@ const ProductList = () => {
             </select>
           </div>
           <div className={style.div}>
-            <label htmlFor="productName">Sort By</label>
+            <label htmlFor="productName">{t("productSort")}</label>
             <select ref={sortByRef}>
               <option value="a-z">a-z</option>
               <option value="z-a">z-a</option>
@@ -98,7 +102,7 @@ const ProductList = () => {
                 <label>${cardPrice}</label>
               </div>
               <input
-                min="0"
+                min="1000"
                 max="100000"
                 ref={priceRef}
                 onChange={(e) => {
@@ -127,7 +131,7 @@ const ProductList = () => {
               }}
             >
               <label className="label cursor-pointer" htmlFor="chexboxInput">
-                Free Shopping
+                {t("productShop")}
               </label>
               <input
                 type="checkbox"
@@ -139,28 +143,30 @@ const ProductList = () => {
               <button
                 className={style.search}
                 onClick={(e) => {
-                  setLoading(true)
+                  setLoading(true);
                   e.preventDefault();
                   FilterSearch();
                 }}
               >
-                Search
+                {t("search")}
               </button>
               <button
                 onClick={(e) => {
-                  setLoading(true)
+                  setLoading(true);
                   e.preventDefault();
                   FormReset();
                   fetchProducts();
                 }}
               >
-                Reset
+                {t("reset")}
               </button>
             </div>
           </div>
         </form>
         <div className={style.replaceWrapper}>
-          <p>{data.length} Products</p>
+          <p>
+            {data.length} {t("products")}
+          </p>
           <div className={style.replaceButtons}>
             <button
               onClick={() => {

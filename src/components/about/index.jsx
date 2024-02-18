@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 function About() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    if (localStorage.getItem("lang")) {
+      let lang = localStorage.getItem("lang");
+      i18n.changeLanguage(lang);
+    }
+  }, []);
   return (
     <div className="align-element py-20">
       <div className="flex flex-wrap gap-2 sm:gap-x-6 items-center justify-center">
         <h3 className="text-4xl font-bold leading-none tracking-tight sm:text-6xl">
-          We love
+          {t("aboutTitle")}
         </h3>
         <div class="stats bg-primary shadow">
           <div class="stat">
             <div class="stat-title text-primary-content text-4xl font-bold tracking-widest">
-              comfy
+              {t("aboutTitleSpan")}
             </div>
           </div>
         </div>

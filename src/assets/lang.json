@@ -4,7 +4,21 @@
       "home": "Home",
       "about": "About",
       "products": "Products",
-      "card": "Card"
+      "card": "Card",
+      "homeTitle": "We are changing the way people shop ",
+      "productButton": "OUR PRODUCTS",
+      "featured": "Featured Products",
+      "aboutTitle": "We love",
+      "aboutTitleSpan": "comfy",
+      "signin": "Sign in /Guest",
+      "signup": "Create Account",
+      "productSearch": "Search Product",
+      "productCategory": "Search Category",
+      "productCompany": "Select Company",
+      "productSort": "Sort By",
+      "productShop": "Free Shopping",
+      "search": "Search",
+      "reset": "Reset"
     }
   },
   "ru": {
@@ -12,7 +26,21 @@
       "home": "Дом",
       "about": "O нас",
       "products": "Продукты",
-      "card": "Kорзина"
+      "card": "Kорзина",
+      "homeTitle": "Мы меняем способ совершения покупок",
+      "productButton": "Hаши продукты",
+      "featured": "Рекомендуемые продукты",
+      "aboutTitle": "Мы любим",
+      "aboutTitleSpan": "удобный",
+      "signin": "Войти/Гость",
+      "signup": "Зарегистрироваться",
+      "productSearch": "Поиск продукта",
+      "productCategory": "Категория поиска",
+      "productCompany": "Выберите компанию",
+      "productSort": "Сортировать по",
+      "productShop": "Бесплатный шоппинг",
+      "search": "Поиск",
+      "reset": "Перезагрузить"
     }
   },
   "uz": {
@@ -20,7 +48,21 @@
       "home": "Asosiy",
       "about": "Biz haqimizda",
       "products": "Mahsulotlar",
-      "card": "Savat"
+      "card": "Savat",
+      "homeTitle": "Biz odamlarning xarid qilish uslubini o'zgartirmoqdamiz",
+      "productButton": "Mahsulotlarimiz",
+      "featured": "Tanlangan mahsulotlar",
+      "aboutTitle": "Biz qulaylikni",
+      "aboutTitleSpan": "sevamiz",
+      "signin": "Kirish/Mehmon",
+      "signup": "Hisob Yarating",
+      "productSearch": "Mahsulotni qidirish",
+      "productCategory": "Kategoriyani qidirish",
+      "productCompany": "Kompaniyani tanlang",
+      "productSort": "Saralash turi",
+      "productShop": "Bepul xarid qilish",
+      "search": "Qidirish",
+      "reset": "Tozalash"
     }
   }
 }

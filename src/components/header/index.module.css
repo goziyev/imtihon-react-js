@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 13px 0px;
+  padding: 8px 0px;
   background-color: transparent;
 }
 .hamburger {
@@ -46,7 +46,7 @@
 .navbar ul a {
   color: rgb(57, 78, 106);
   font-size: 16px;
-  padding: 10px 12px;
+  padding: 10px 10px;
   border-radius: 8px;
   font-weight: 500;
   line-height: 20px;

@@ -19,8 +19,9 @@ import styles from "./index.module.css";
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const { t, i18n } = useTranslation();
   const [darkMode, setDarkMode] = useState(false);
+
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     if (localStorage.getItem("lang")) {
       let lang = localStorage.getItem("lang");
@@ -50,8 +51,8 @@ const NavBar = () => {
       <div className={styles.headerWrapper}>
         <div className={styles.container}>
           <div>
-            <span className={styles.signin}>Sign in /Guest </span>
-            <span className={styles.signup}>Create Account </span>
+            <span className={styles.signin}>{t("signin")}</span>
+            <span className={styles.signup}>{t("signup")}</span>
           </div>
         </div>
       </div>
