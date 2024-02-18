@@ -219,6 +219,10 @@ const ProductList = () => {
             </button>
           </div>
         </div>
+        {data.length == 0 && (
+          <h2 className="mt-5 font-bold">{t("noProduct")}</h2>
+        )}
+
         {replace ? (
           <div className={style.cardWrapper}>
             {data &&
@@ -276,21 +280,21 @@ const ProductList = () => {
               })}
           </div>
         )}
-        <div className="flex justify-end">
-          <div className="join">
-            <button className="btn btn-xs sm:btn-md join-item">Prev</button>
-            <button className="btn btn-xs sm:btn-md border-none join-item bg-base-300 border-base-300 ">
-              1
-            </button>
-            <button className="btn btn-xs sm:btn-md border-none join-item ">
-              2
-            </button>
-            <button className="btn btn-xs sm:btn-md border-none join-item ">
-              3
-            </button>
-            <button className="btn btn-xs sm:btn-md join-item">Next</button>
+        {data.length > 0 && (
+          <div className="flex justify-end">
+            <div className="join">
+              <button className="btn btn-xs sm:btn-md border-none join-item bg-base-300 border-base-300 ">
+                1
+              </button>
+              <button className="btn btn-xs sm:btn-md border-none join-item ">
+                2
+              </button>
+              <button className="btn btn-xs sm:btn-md border-none join-item ">
+                3
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

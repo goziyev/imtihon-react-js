@@ -18,7 +18,8 @@
       "productSort": "Sort By",
       "productShop": "Free Shopping",
       "search": "Search",
-      "reset": "Reset"
+      "reset": "Reset",
+      "noProduct": "Products are not available"
     }
   },
   "ru": {
@@ -40,7 +41,8 @@
       "productSort": "Сортировать по",
       "productShop": "Бесплатный шоппинг",
       "search": "Поиск",
-      "reset": "Перезагрузить"
+      "reset": "Перезагрузить",
+      "noProduct": "Товары недоступны"
     }
   },
   "uz": {
@@ -62,7 +64,8 @@
       "productSort": "Saralash turi",
       "productShop": "Bepul xarid qilish",
       "search": "Qidirish",
-      "reset": "Tozalash"
+      "reset": "Tozalash",
+      "noProduct": " Siz qidirdan Mahsulotlarimiz Mavjud emas"
     }
   }
 }

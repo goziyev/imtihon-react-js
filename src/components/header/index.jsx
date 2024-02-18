@@ -16,11 +16,20 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LanguageIcon from "@mui/icons-material/Language";
 import styles from "./index.module.css";
 
+const themes = {
+  autumn: "light",
+  halloween: "dark",
+};
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem("theme" || themes.light);
+};
+
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
-
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const { t, i18n } = useTranslation();
   useEffect(() => {
     if (localStorage.getItem("lang")) {
@@ -28,12 +37,24 @@ const NavBar = () => {
       i18n.changeLanguage(lang);
     }
     if (localStorage.getItem("mode")) {
-      setDarkMode(localStorage.getItem("modex"));
+      setDarkMode(localStorage.getItem("mode") === "true"); // darkMode ni Boolean qilib o'zgartiramiz
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleTheme = () => {
+    const { autumn, halloween } = themes;
+    const newTheme = theme === halloween ? autumn : halloween;
+    document.documentElement.setAttribute("data-theme", theme);
+    setTheme(newTheme);
   };
 
   const handleLanguageMenuClick = (event) => {
@@ -44,6 +65,12 @@ const NavBar = () => {
     i18n.changeLanguage(lng);
     localStorage.setItem("lang", lng);
     setAnchorEl(null);
+  };
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem("mode", newDarkMode); // darkMode ni string ko'rinishida saqlaymiz
   };
 
   return (
@@ -84,9 +111,9 @@ const NavBar = () => {
             <li className={styles.multiButtons}>
               <IconButton
                 onClick={() => {
-                  setDarkMode(!darkMode);
-                  localStorage.setItem("mode", darkMode);
-                }}
+                  handleTheme();
+                  toggleDarkMode();
+                }} // dark mode ni toggle qilish uchun
               >
                 {!darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
@@ -97,6 +124,7 @@ const NavBar = () => {
                 id="language-menu"
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)} // Menu yopish
               >
                 <MenuItem onClick={() => changeLanguage("en")}>
                   English
@@ -109,6 +137,7 @@ const NavBar = () => {
                 </MenuItem>
               </Menu>
             </li>
+
             <Drawer anchor="left" open={openMenu} onClose={toggleMenu}>
               <List>
                 <ListItem button component={Link} to="/">

@@ -49,7 +49,14 @@ function Home() {
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
             perferendis porro nobis.
           </p>
-          <button className="btn btn-primary">{t("productButton")} </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              Navigate("/products");
+            }}
+          >
+            {t("productButton")}{" "}
+          </button>
         </div>
         <div className="md:w-1/2">
           <div className="carousel carousel-center max-w-full md:max-w-4xl p-4 space-x-4 bg-neutral rounded-box mt-16">

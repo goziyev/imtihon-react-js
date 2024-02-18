@@ -8,6 +8,7 @@ import Home from "./components/home";
 import "./App.css";
 import NoPage from "./components/noPage";
 
+
 const App = () => {
   return (
     <Router>
