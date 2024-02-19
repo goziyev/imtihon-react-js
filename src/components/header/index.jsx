@@ -83,7 +83,7 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      <div className={styles.headerBackground}>
+      <div className="bg-base-200">
         <div className={styles.container}>
           <nav className={`${styles.navbar} ${openMenu ? styles.open : ""}`}>
             <div className={styles.logo}>

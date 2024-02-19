@@ -61,7 +61,9 @@ const ProductList = () => {
     <>
       {loading && <Loader loading={loading} />}
       <div className={style.container}>
-        <form className={style.formWrapper}>
+        <form
+          className={`bg-base-200 rounded-md px-8 py-4 grid gap-x-4  gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center ${style.formWrapper}`}
+        >
           <div className={style.div}>
             <label htmlFor="productName">{t("productSearch")}</label>
             <input type="text" ref={searchRef} />
@@ -95,72 +97,72 @@ const ProductList = () => {
               <option value="z-a">z-a</option>
             </select>
           </div>
-          <div className={style.formBottom}>
-            <div className={style.product}>
-              <div className={style.priceTop}>
-                <label>select price</label>
-                <label>${cardPrice}</label>
-              </div>
-              <input
-                min="1000"
-                max="100000"
-                ref={priceRef}
-                onChange={(e) => {
-                  setCardPrice(e.target.value);
-                }}
-                type="range"
-                value={cardPrice}
-                className="range range-info range-sm w-64 "
-              />
-              <div className={style.priceBottom}>
-                <label>
-                  <b>0</b>
-                </label>
-                <label>
-                  <b>$1,000,00</b>
-                </label>
-              </div>
+
+          <div className={style.product}>
+            <div className={style.priceTop}>
+              <label>select price</label>
+              <label>${cardPrice}</label>
             </div>
-            <div
-              className="form-control"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
+            <input
+              min="1000"
+              max="100000"
+              ref={priceRef}
+              onChange={(e) => {
+                setCardPrice(e.target.value);
+              }}
+              type="range"
+              value={cardPrice}
+              className="range range-info range-sm w-64 "
+            />
+            <div className={style.priceBottom}>
+              <label>
+                <b>0</b>
+              </label>
+              <label>
+                <b>$1,000,00</b>
+              </label>
+            </div>
+          </div>
+          <div
+            className="form-control"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <label className="label cursor-pointer" htmlFor="chexboxInput">
+              {t("productShop")}
+            </label>
+            <input
+              type="checkbox"
+              className="checkbox checkbox-primary"
+              id="chexboxInput"
+            />
+          </div>
+          <div className={style.buttons}>
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={(e) => {
+                setLoading(true);
+                e.preventDefault();
+                FilterSearch();
               }}
             >
-              <label className="label cursor-pointer" htmlFor="chexboxInput">
-                {t("productShop")}
-              </label>
-              <input
-                type="checkbox"
-                className="checkbox checkbox-primary"
-                id="chexboxInput"
-              />
-            </div>
-            <div className={style.buttons}>
-              <button
-                className={style.search}
-                onClick={(e) => {
-                  setLoading(true);
-                  e.preventDefault();
-                  FilterSearch();
-                }}
-              >
-                {t("search")}
-              </button>
-              <button
-                onClick={(e) => {
-                  setLoading(true);
-                  e.preventDefault();
-                  FormReset();
-                  fetchProducts();
-                }}
-              >
-                {t("reset")}
-              </button>
-            </div>
+              {t("search")}
+            </button>
+            <button
+              className="btn btn-accent btn-sm"
+              onClick={(e) => {
+                setLoading(true);
+                e.preventDefault();
+                FormReset();
+                fetchProducts();
+              }}
+            >
+              {t("reset")}
+            </button>
           </div>
         </form>
         <div className={style.replaceWrapper}>

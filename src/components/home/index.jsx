@@ -41,7 +41,7 @@ function Home() {
         style={styles}
       >
         <div className="md:w-1/2">
-          <h3 className="mt-16 text-5xl text-gray-600 font-bold w-5/6 mb-5">
+          <h3 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl">
             {t("homeTitle")}
           </h3>
           <p className="text-xl w-4/6 mb-8 text-gray-600  dark:text-white">
