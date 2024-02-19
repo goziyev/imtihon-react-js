@@ -37,7 +37,7 @@ const NavBar = () => {
       i18n.changeLanguage(lang);
     }
     if (localStorage.getItem("mode")) {
-      setDarkMode(localStorage.getItem("mode") === "true"); // darkMode ni Boolean qilib o'zgartiramiz
+      setDarkMode(localStorage.getItem("mode") === "true");
     }
   }, []);
 
@@ -70,7 +70,7 @@ const NavBar = () => {
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
-    localStorage.setItem("mode", newDarkMode); // darkMode ni string ko'rinishida saqlaymiz
+    localStorage.setItem("mode", newDarkMode);
   };
 
   return (
@@ -96,7 +96,9 @@ const NavBar = () => {
             </button>
             <ul>
               <li>
-                <Link to="/">{t("home")}</Link>
+                <Link  to="/">
+                  {t("home")}
+                </Link>
               </li>
               <li>
                 <Link to="/about">{t("about")}</Link>

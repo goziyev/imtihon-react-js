@@ -96,29 +96,31 @@ function Home() {
         </div>
       </div>
       <div className={style.container}>
-        <h2 className={style.text}>{t("featured")}</h2>
-        <div className={style.cardWrapper}>
-          {data &&
-            data.map((el, index) => {
-              return (
-                <div
-                  onClick={() => {
-                    Navigate(`/products/${el.id}`);
-                  }}
-                  key={index}
-                  className={style.card}
-                >
-                  <div className={style.cardImg}>
-                    <img src={el.attributes.image} />
+        <h2 className={`${style.text}`}>{t("featured")}</h2>
+        <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {data &&
+              data.map((el, index) => {
+                return (
+                  <div
+                    onClick={() => {
+                      Navigate(`/products/${el.id}`);
+                    }}
+                    key={index}
+                    className={style.card}
+                  >
+                    <div className={style.cardImg}>
+                      <img src={el.attributes.image} />
+                    </div>
+                    <div className="card-body items-center text-center">
+                      <h4 className="card-title capitalize tracking-wider">
+                        {el.attributes.title}
+                      </h4>
+                      <h5>${el.attributes.price}</h5>
+                    </div>
                   </div>
-                  <div className={style.cardText}>
-                    <h4>{el.attributes.title}</h4>
-                    <h5>${el.attributes.price}</h5>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
+                );
+              })}
+          </div>
       </div>
     </>
   );

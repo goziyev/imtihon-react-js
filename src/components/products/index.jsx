@@ -226,7 +226,7 @@ const ProductList = () => {
         )}
 
         {replace ? (
-          <div className={style.cardWrapper}>
+          <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {data &&
               data.map((el, index) => {
                 return (
@@ -240,8 +240,10 @@ const ProductList = () => {
                     <div className={style.cardImg}>
                       <img src={el.attributes.image} />
                     </div>
-                    <div className={style.cardText}>
-                      <h4>{el.attributes.title}</h4>
+                    <div className="card-body items-center text-center">
+                      <h4 className="card-title capitalize tracking-wider">
+                        {el.attributes.title}
+                      </h4>
                       <h5>${el.attributes.price}</h5>
                     </div>
                   </div>

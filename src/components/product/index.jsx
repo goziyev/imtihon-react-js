@@ -2,17 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { css } from "@emotion/react";
 import style from "./index.module.css";
-import { ClipLoader } from "react-spinners"; // react-spinners dan foydalanish
 import Loader from "../loader";
 
 const ProductDetails = () => {
   const Navigate = useNavigate();
   let { id } = useParams();
-
-  const override = css`
-    display: block;
-    margin: 0 auto;
-  `;
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,9 +27,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      {loading && (
-        <Loader loading={loading}/>
-      )}
+      {loading && <Loader loading={loading} />}
       <div className={style.container}>
         <div className={style.links}>
           <p
@@ -59,7 +51,7 @@ const ProductDetails = () => {
               <div className={style.cardImg}>
                 <img src={data.image} alt="" />
               </div>
-              <div className={style.cardTexts}>
+              <div className={`${style.cardTexts}`}>
                 <h4 className={style.cardTitle}>{data.title}</h4>
                 <p className={style.cardcomp}>{data.company}</p>
                 <p className={style.cardPrice}>${modifiedString}</p>
