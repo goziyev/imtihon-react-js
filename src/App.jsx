@@ -7,7 +7,7 @@ import About from "./components/about";
 import Home from "./components/home";
 import "./App.css";
 import NoPage from "./components/noPage";
-
+import Card from "./components/card";
 
 const App = () => {
   return (
@@ -19,6 +19,7 @@ const App = () => {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/about" element={<About />} />
+          <Route path="/card" element={<Card />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </div>
@@ -27,4 +28,3 @@ const App = () => {
 };
 
 export default App;
-  

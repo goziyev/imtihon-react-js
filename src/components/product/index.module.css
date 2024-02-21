@@ -112,3 +112,33 @@
   font-weight: 600;
   padding: 15px 0px;
 }
+
+.alert-success {
+  color: #fff;
+  border-color: #539753;
+  background-color: #8fbf2f;
+}
+
+.alert-error {
+  color: #fff;
+  border-color: #dc4a4d;
+  background-color: #f25c5d;
+}
+
+.alert-trash {
+  color: #fff;
+  border-color: #dc4a4d;
+  background-color: #f25c5d;
+}
+
+.alert-info {
+  color: #fff;
+  border-color: #076d91;
+  background-color: #3397db;
+}
+
+.alert-warning {
+  color: #fff;
+  border-color: #dd6137;
+  background-color: #f7931d;
+}

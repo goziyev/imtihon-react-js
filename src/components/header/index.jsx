@@ -15,6 +15,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LanguageIcon from "@mui/icons-material/Language";
 import styles from "./index.module.css";
+import { useSelector } from "react-redux";
 
 const themes = {
   autumn: "light",
@@ -26,11 +27,13 @@ const getThemeFromLocalStorage = () => {
 };
 
 const NavBar = () => {
+  const counter = useSelector((state) => state.customers.customers);
   const [openMenu, setOpenMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const { t, i18n } = useTranslation();
+  let total = 0;
   useEffect(() => {
     if (localStorage.getItem("lang")) {
       let lang = localStorage.getItem("lang");
@@ -40,7 +43,9 @@ const NavBar = () => {
       setDarkMode(localStorage.getItem("mode") === "true");
     }
   }, []);
-
+  counter.map((el) => {
+    total += Number(el.number_of_product);
+  });
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
@@ -96,9 +101,7 @@ const NavBar = () => {
             </button>
             <ul>
               <li>
-                <Link  to="/">
-                  {t("home")}
-                </Link>
+                <Link to="/">{t("home")}</Link>
               </li>
               <li>
                 <Link to="/about">{t("about")}</Link>
@@ -106,8 +109,9 @@ const NavBar = () => {
               <li>
                 <Link to="/products">{t("products")}</Link>
               </li>
-              <li>
+              <li className={styles.parent}>
                 <Link to="/card">{t("card")}</Link>
+                <span className={styles.child}>{total}</span>
               </li>
             </ul>
             <li className={styles.multiButtons}>
