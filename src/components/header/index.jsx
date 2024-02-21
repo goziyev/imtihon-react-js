@@ -155,7 +155,7 @@ const NavBar = () => {
                 <ListItem button component={Link} to="/about">
                   <ListItemText primary={t("about")} />
                 </ListItem>
-                <ListItem button component={Link} to="/contact">
+                <ListItem button component={Link} to="/card">
                   <ListItemText primary={t("card")} />
                 </ListItem>
               </List>
