@@ -119,7 +119,7 @@ const NavBar = () => {
                 onClick={() => {
                   handleTheme();
                   toggleDarkMode();
-                }} // dark mode ni toggle qilish uchun
+                }}
               >
                 {!darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>

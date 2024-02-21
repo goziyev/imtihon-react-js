@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 function Card() {
-  const dispatch = useDispatch()
+  const [elId, setElId] = useState(0);
+  const dispatch = useDispatch();
   let data = useSelector((state) => state.customers.customers);
   let total = 0;
   data.forEach((el) => {
     total = total + Number(el.price * el.number_of_product);
   });
 
-  function handleDelete(eliD){
-    dispatch({ type: "Remove_customer", payload: eliD });
-    
+  function handleDelete() {
+    dispatch({ type: "Remove_customer", payload: elId });
   }
   return (
     <section
@@ -33,7 +33,6 @@ function Card() {
           <div className="mt-8 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-8">
               {data.map((el, index) => {
-                console.log(el);
                 return (
                   <article
                     key={index}
@@ -75,15 +74,19 @@ function Card() {
                           <option value="4">4</option>
                           <option value="5">5</option>
                           <option value="6">6</option>
-                          <option value="6">7</option>
-                          <option value="6">8</option>
-                          <option value="6">9</option>
-                          <option value="6">10</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
                         </select>
                       </div>
-                      <button onClick={() => {
-                        handleDelete(el.id)
-                      }} className="mt-2 link link-primary link-hover text-sm">
+                      <button
+                        onClick={() => {
+                          setElId(el.id);
+                          handleDelete();
+                        }}
+                        className="mt-2 link link-primary link-hover text-sm"
+                      >
                         remove
                       </button>
                     </div>
@@ -111,7 +114,9 @@ function Card() {
                   </p>
                   <p className="flex justify-between text-sm mt-4 pb-2">
                     <span>Order Total</span>
-                    <span className="font-medium"> ${((parseFloat(total) * 1) / 100).toFixed(2)}</span>
+                    <span className="font-medium">
+                      ${((parseFloat(total) * 1) / 100).toFixed(2)}
+                    </span>
                   </p>
                 </div>
               </div>
