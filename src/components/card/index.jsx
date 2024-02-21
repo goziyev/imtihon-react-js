@@ -1,12 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 function Card() {
+  const dispatch = useDispatch()
   let data = useSelector((state) => state.customers.customers);
   let total = 0;
   data.forEach((el) => {
     total = total + Number(el.price * el.number_of_product);
   });
+
+  function handleDelete(eliD){
+    dispatch({ type: "Remove_customer", payload: eliD });
+    
+  }
   return (
     <section
       className="align-element py-20 mt-14 ml-auto mr-auto"
@@ -76,7 +81,9 @@ function Card() {
                           <option value="6">10</option>
                         </select>
                       </div>
-                      <button className="mt-2 link link-primary link-hover text-sm">
+                      <button onClick={() => {
+                        handleDelete(el.id)
+                      }} className="mt-2 link link-primary link-hover text-sm">
                         remove
                       </button>
                     </div>
