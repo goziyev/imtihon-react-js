@@ -1,23 +1,51 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 function Card() {
-  const [elId, setElId] = useState(0);
   const dispatch = useDispatch();
-  let data = useSelector((state) => state.customers.customers);
   let total = 0;
-  data.forEach((el) => {
-    total = total + Number(el.price * el.number_of_product);
-  });
+  const [products, setProducts] = useState([]);
+  function getData() {
+    let data = [];
+    if (localStorage.getItem("products")) {
+      data = JSON.parse(localStorage.getItem("products"));
+    }
+    return data;
+  }
+  useEffect(() => {
+    let data = getData();
+    data.forEach((el) => {
+      total = total + Number(el.price * el.number_of_product);
+    });
+    setProducts(data);
+  }, []);
 
-  function handleDelete() {
-    dispatch({ type: "Remove_customer", payload: elId });
+  function handleDelete(elId) {
+    let a = confirm("Rostdan ham o'chirmoqchimisiz ? ");
+    let data = getData();
+    if (a) {
+      data = data.filter((el) => {
+        el.id != elId;
+      });
+      localStorage.setItem("products", JSON.stringify(data));
+      setProducts(data);
+    } else {
+      let a = confirm("Balki o'ylab ko'rarsiz o'chirishni istaysizmi ? ");
+      if (a) {
+        localStorage.setItem("products", JSON.stringify(data));
+        setProducts(data);
+      } else {
+        alert(
+          "ha mayli o'chirmay qo'yaveramiz lekin o'ylab ko'rarsiz siz bekorga bosmadingiz tugmani bu balki hayotingizni o'zgartirib yuborar"
+        );
+      }
+    }
   }
   return (
     <section
       className="align-element py-20 mt-14 ml-auto mr-auto"
       style={{ maxWidth: "1152px", padding: "0px 32px" }}
     >
-      {data.length == 0 ? (
+      {products.length == 0 ? (
         <div className="border-b border-base-300 pb-5">
           <h2 className="text-3xl font-medium tracking-wider capitalize">
             Your cart is empty
@@ -32,7 +60,7 @@ function Card() {
           </div>
           <div className="mt-8 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              {data.map((el, index) => {
+              {products.map((el, index) => {
                 return (
                   <article
                     key={index}
@@ -53,7 +81,7 @@ function Card() {
                         <span
                           className="badge badge-sm"
                           style={{
-                            backgroundColor: `${el.product_of_color}`,
+                            backgroundColor: `${el.color}`,
                           }}
                         ></span>
                       </p>
@@ -64,6 +92,7 @@ function Card() {
                           <span className="label-text">Amount</span>
                         </label>
                         <select
+                          defaultValue={el.count}
                           name="amount"
                           id="amount"
                           className="mt-2 select select-base select-bordered select-xs"
@@ -82,10 +111,9 @@ function Card() {
                       </div>
                       <button
                         onClick={() => {
-                          setElId(el.id);
-                          handleDelete();
+                          handleDelete(el.id);
                         }}
-                        className="mt-2 link link-primary link-hover text-sm"
+                        className="mt-2 btn btn-primary text-sm"
                       >
                         remove
                       </button>

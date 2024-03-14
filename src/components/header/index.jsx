@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,7 +15,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import LanguageIcon from "@mui/icons-material/Language";
 import styles from "./index.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const themes = {
   autumn: "light",
@@ -27,13 +27,20 @@ const getThemeFromLocalStorage = () => {
 };
 
 const NavBar = () => {
-  const counter = useSelector((state) => state.customers.customers);
   const [openMenu, setOpenMenu] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const { t, i18n } = useTranslation();
-  let total = 0;
+  const dispatch = useDispatch();
+  const cartCount = useSelector((state) => state.cart);
+  function getData() {
+    let data = [];
+    if (localStorage.getItem("products")) {
+      data = JSON.parse(localStorage.getItem("products"));
+    }
+    return data;
+  }
   useEffect(() => {
     if (localStorage.getItem("lang")) {
       let lang = localStorage.getItem("lang");
@@ -42,10 +49,18 @@ const NavBar = () => {
     if (localStorage.getItem("mode")) {
       setDarkMode(localStorage.getItem("mode") === "true");
     }
+    let data = getData();
+    if (data.length) {
+      let c = 0;
+      data.forEach((element) => {
+        c += Number(element.count);
+      });
+      dispatch({ type: "DEC", payload: c });
+    } else {
+      dispatch({ type: "DEC", payload: 0 });
+    }
   }, []);
-  counter.map((el) => {
-    total += Number(el.number_of_product);
-  });
+
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
@@ -111,7 +126,7 @@ const NavBar = () => {
               </li>
               <li className={styles.parent}>
                 <Link to="/card">{t("card")}</Link>
-                <span className={styles.child}>{total}</span>
+                <span className={styles.child}>{cartCount}</span>
               </li>
             </ul>
             <li className={styles.multiButtons}>

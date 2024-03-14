@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import style from "./index.module.css";
 import Loader from "../loader";
@@ -12,8 +12,8 @@ const ProductDetails = () => {
   const selectRef = useRef(1);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedColor, setSelectedColor] = useState(null);
-  const colorRef = useRef();
+  const [active, setActive] = useState(0);
+  const [color, setColor] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,24 +21,61 @@ const ProductDetails = () => {
       .then((response) => response.json())
       .then((el) => {
         setData(el.data.attributes);
-        console.log(el.data.attributes);
+        setColor(el.data.attributes.colors[0]);
         setLoading(false);
-        console.log(el.data.attributes);
       })
       .catch((error) => console.log("Error fetching product details:", error));
   }, [id]);
+
+  function getData() {
+    let data = [];
+    if (localStorage.getItem("products")) {
+      data = JSON.parse(localStorage.getItem("products"));
+    }
+    return data;
+  }
 
   const originalString = String(data.price);
   const modifiedString = originalString.replace(/(\d)(?=\d{2}$)/g, "$1.");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    data.product_of_color = colorRef.current.value;
-    data.number_of_product = selectRef.current.value;
-    
-    dispatch({ type: "Add_customer", payload: data });
-    
+    console.log(data);
+    const fur = {
+      id,
+      color,
+      count: selectRef.current.value,
+      image: data.image,
+      title: data.title,
+      price: data.price,
+      company: data.company,
+    };
+    console.log(fur);
+    let product = getData();
+    if (product.length) {
+      let exsist = product.find((el) => {
+        return el.id == fur.id && el.color == fur.color;
+      });
+      if (exsist) {
+        let copied = JSON.parse(JSON.stringify(product));
+        copied.map((el) => {
+          if (el.id == fur.id && el.color == fur.color) {
+            el.count = Number(el.count) + Number(fur.count);
+          }
+          return el;
+        });
+        localStorage.setItem("products", JSON.stringify(copied));
+        dispatch({ type: "ADD", payload: fur.count });
+      } else {
+        product.push(fur);
+        localStorage.setItem("products", JSON.stringify(product));
+        dispatch({ type: "ADD", payload: fur.count });
+      }
+    } else {
+      product.push(fur);
+      localStorage.setItem("products", JSON.stringify(product));
+      dispatch({ type: "ADD", payload: fur.count });
+    }
     toast.success("Mahsulot savatchaga qo'shildi");
     setTimeout(() => {}, 2000);
   };
@@ -78,27 +115,21 @@ const ProductDetails = () => {
                 <div style={{ display: "flex", gap: "5px" }}>
                   {data.colors.map((el, index) => {
                     return (
-                      <label
+                      <span
                         key={index}
                         style={{
                           backgroundColor: el,
                           borderRadius: "50%",
                           width: "20px",
                           height: "20px",
-                          border:
-                            selectedColor === el ? "2px solid red" : "none", 
-                          cursor: "pointer", 
+                          border: active == index ? "2px solid black" : "",
+                          cursor: "pointer",
                         }}
-                        onClick={() => setSelectedColor(el)}
-                      >
-                        <input
-                          type="radio"
-                          name="color"
-                          value={el}
-                          style={{ display: "none" }}
-                          ref={colorRef}
-                        />
-                      </label>
+                        onClick={() => {
+                          setActive(index);
+                          setColor(el);
+                        }}
+                      ></span>
                     );
                   })}
                 </div>

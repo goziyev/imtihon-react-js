@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import style from "./index.module.css";
 import { useNavigate } from "react-router-dom";
 import Loader from "../loader";
